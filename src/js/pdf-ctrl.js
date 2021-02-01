@@ -17,6 +17,7 @@ angular.module('pdf')
 
     var url = $scope.$eval($attrs.url);
     var headers = $scope.$eval($attrs.headers);
+    var withCredentials = $scope.$eval($attrs.withCredentials);
     var pdfDoc;
     $scope.pageCount = 0;
     var currentPage = 1;
@@ -133,6 +134,8 @@ angular.module('pdf')
       if (headers) {
         docInitParams.httpHeaders = headers;
       }
+
+	  docInitParams.withCredentials = !!withCredentials;
 
       return PDFJS
         .getDocument(docInitParams)
